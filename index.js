@@ -25,7 +25,7 @@ const auth = require("./middleware/auth")
 const redirectIfAuthenticate = require("./middleware/redirectIfAuthenticated")
 const mongoStore = connectMongo(expressSession)
 
-//mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/node-js-blog', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/node-js-blog', { useNewUrlParser: true });
 app.use(connectFlash())
 
 app.use(
@@ -36,9 +36,9 @@ app.use(
 // this secret key is used for encrypt the data
 app.use(expressSession({
   secret:'secret',
-//   store: new mongoStore({
-//     mongooseConnection:mongoose.connection
-//   })
+  store: new mongoStore({
+    mongooseConnection:mongoose.connection
+  })
 }))
 app.use(express.json())
 app.use(fileUpload())
