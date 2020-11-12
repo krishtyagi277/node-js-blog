@@ -25,7 +25,12 @@ const auth = require("./middleware/auth")
 const redirectIfAuthenticate = require("./middleware/redirectIfAuthenticated")
 const mongoStore = connectMongo(expressSession)
 
-mongoose.connect('mongodb://localhost/node-js-blog', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/node-js-blog', { useNewUrlParser: true });
+
+mongoose.connection.on('connected', ()=>{
+  console.log("Mongoose connected successfully");
+})
+
 app.use(connectFlash())
 
 app.use(
