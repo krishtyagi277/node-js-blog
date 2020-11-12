@@ -36,9 +36,9 @@ app.use(
 // this secret key is used for encrypt the data
 app.use(expressSession({
   secret:'secret',
-  store: new mongoStore({
-    mongooseConnection:mongoose.connection
-  })
+//   store: new mongoStore({
+//     mongooseConnection:mongoose.connection
+//   })
 }))
 app.use(express.json())
 app.use(fileUpload())
