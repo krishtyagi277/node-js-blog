@@ -31,13 +31,11 @@ mongoose.connect(uri, {
   useUnifiedTopology: true
 })
 .then(() => {
-  console.log(‘MongoDB Connected…’)
+  console.log("MongoDB Connected…")
 })
 .catch(err => console.log(err))
 
-mongoose.connection.on('connected', ()=>{
-  console.log("Mongoose connected successfully");
-})
+
 
 app.use(connectFlash())
 
