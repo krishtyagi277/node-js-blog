@@ -24,13 +24,16 @@ const validateCreatePostMiddleware = require("./middleware/storePost")
 const auth = require("./middleware/auth")
 const redirectIfAuthenticate = require("./middleware/redirectIfAuthenticated")
 const mongoStore = connectMongo(expressSession)
+const uri = "mongodb+srv://krishtyagi277:Vqdxbp488831@node-js-blog.qfd9y.mongodb.net/node-js-blog?retryWrites=true&w=majority";
 
-try{
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/node-js-blog', { useNewUrlParser: true });
-}
-catch(err){
- console.log(err)
-}
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log(‘MongoDB Connected…’)
+})
+.catch(err => console.log(err))
 
 mongoose.connection.on('connected', ()=>{
   console.log("Mongoose connected successfully");
